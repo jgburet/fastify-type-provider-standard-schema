@@ -1,0 +1,33 @@
+{
+    "name": "fastify-type-provider-standard-schema",
+    "version": "0.1.0",
+    "description": "Fastify type provider for standard schema compatible validation packages",
+    "keywords": ["fastify", "type-provider", "standard-schema", "validation"],
+    "author": "jgburet",
+    "license": "MIT",
+    "main": "./dist/cjs/index.js",
+    "module": "./dist/esm/index.js",
+    "exports": {
+        ".": {
+            "import": "./dist/esm/index.js",
+            "require": "./dist/cjs/index.js",
+            "types": "./dist/esm/index.d.ts"
+        }
+    },
+    "files": ["dist"],
+    "scripts": {
+        "build:cjs": "tsc -p tsconfig.cjs.json",
+        "build:esm": "tsc -p tsconfig.esm.json",
+        "build": "pnpm clean && pnpm build:cjs && pnpm build:esm",
+        "clean": "rm -rf ./dist",
+        "prepare": "pnpm build"
+    },
+    "peerDependencies": {},
+    "devDependencies": {
+        "@biomejs/biome": "1.9.4",
+        "@standard-schema/spec": "^1.0.0",
+        "@types/node": "^22.14.1",
+        "fastify": "^5.3.0",
+        "typescript": "^5.8.3"
+    }
+}

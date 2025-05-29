@@ -1,0 +1,2 @@
+export class FastifyTypeProviderStandardSchemaError extends Error {}
+export class FastifyTypeProviderStandardSchemaValidationError extends FastifyTypeProviderStandardSchemaError {}
