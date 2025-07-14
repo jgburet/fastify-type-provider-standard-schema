@@ -12,21 +12,65 @@ A flexible Fastify type provider that works with **any** validation library impl
 ## Usage
 
 ```typescript
+import fastify from "fastify";
+import { z } from "zod";
 import {
-    standardSchemaSerializerCompiler
     standardSchemaValidatorCompiler,
-    type StandardSchemaTypeProvider
-} from 'fastify-type-provider-standard-schema';
+    standardSchemaSerializerCompiler,
+} from "fastify-type-provider-standard-schema";
+
+import type { StandardSchemaTypeProvider } from "fastify-type-provider-standard-schema";
 
 const server = fastify()
     .withTypeProvider<StandardSchemaTypeProvider>()
-    .setSerializerCompiler(standardSchemaSerializerCompiler)
-    .setValidatorCompiler(standardSchemaValidatorCompiler);
+    .setValidatorCompiler(standardSchemaValidatorCompiler)
+    .setSerializerCompiler(standardSchemaSerializerCompiler);
 
-server.get('/route', {
-    schema: {
-        params: ... // your StandardSchema definition
-    }
-})
-// ...
+server.get(
+    "/users/:id",
+    {
+        schema: {
+            params: z.object({
+                id: z.string(),
+            }),
+            querystring: z.object({
+                include: z.enum(["profile", "posts"]).optional(),
+            }),
+            response: {
+                200: z.object({
+                    id: z.string(),
+                    name: z.string(),
+                    email: z.string(),
+                    include: z.string().optional(),
+                }),
+            },
+        },
+    },
+    async (request, reply) => {
+        // Fully typed: request.params.id, request.query.include
+        return {
+            id: request.params.id,
+            name: "John Doe",
+            email: "john@example.com",
+            include: request.query.include,
+        };
+    },
+);
 ```
+
+**Try it:** [http://localhost:3000/users/123](http://localhost:3000/users/123) or [http://localhost:3000/users/123?include=profile](http://localhost:3000/users/123?include=profile)
+
+*Using Zod here, but works identically with Valibot, ArkType, Effect Schema, or any Standard Schema library - just swap the schema definitions.*
+
+## Examples
+
+Find complete examples using different Standard Schema libraries in the [examples](./examples) directory:
+
+- [ArkType example](./examples/arktype) - Showcasing ArkType's unique syntax and features
+- [OpenAPI integration](./examples/openapi) - Generate OpenAPI docs with fastify-swagger, fastify-swagger-ui, and Scalar UI.
+
+## Going further...
+
+Using [fastify-swagger](https://github.com/fastify/fastify-swagger) to document your routes? Check out [fastify-swagger-transform-validation-schema]() - it transforms validation schemas from various libraries into JSON Schema format for OpenAPI documentation.
+
+See the [complete example](./examples/openapi) showing both packages working together.
