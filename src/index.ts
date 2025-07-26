@@ -46,6 +46,6 @@ export type {
 
 export { standardSchemaValidatorCompiler } from "./validator";
 export type {
-    StandardSchemaValidatorCompilerOptions as StandardSchemaValitorCompilerOptions,
+    StandardSchemaValidatorCompilerOptions,
     StandardSchemaValidatorCompilerReturnType,
 } from "./validator";

@@ -1,0 +1,24 @@
+{
+    "name": "example-arktype",
+    "version": "1.0.0",
+    "description": "",
+    "type": "module",
+    "main": "src/index.ts",
+    "scripts": {
+        "build": "pnpm clean && pnpm tsc",
+        "clean": "rm -rf ./dist",
+        "start": "node ./dist/index.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "arktype": "^2.1.20",
+        "fastify": "^5.3.2",
+        "fastify-type-provider-standard-schema": "^0.1.0"
+    },
+    "devDependencies": {
+        "@types/node": "^22.15.24",
+        "typescript": "^5.8.3"
+    }
+}
