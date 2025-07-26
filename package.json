@@ -2,7 +2,19 @@
     "name": "fastify-type-provider-standard-schema",
     "version": "0.1.0",
     "description": "Fastify type provider for standard schema compatible validation packages",
-    "keywords": ["fastify", "type provider", "standard schema", "validation"],
+    "keywords": [
+        "fastify",
+        "type provider",
+        "standard schema",
+        "validation",
+        "typescript",
+        "zod",
+        "arktype",
+        "valibot",
+        "effect schema",
+        "schema validation",
+        "type safety"
+    ],
     "author": "jgburet",
     "repository": "github:jgburet/fastify-type-provider-standard-schema",
     "license": "MIT",
@@ -16,12 +28,19 @@
         }
     },
     "files": ["dist"],
+    "engines": {
+        "node": ">=18.0.0"
+    },
     "scripts": {
         "build:cjs": "tsc -p tsconfig.cjs.json",
         "build:esm": "tsc -p tsconfig.esm.json",
         "build": "pnpm clean && pnpm build:cjs && pnpm build:esm",
         "clean": "rm -rf ./dist",
         "prepare": "pnpm build"
+    },
+    "peerDependencies": {
+        "@standard-schema/spec": ">=1.0.0",
+        "fastify": ">=4.0.0"
     },
     "devDependencies": {
         "@biomejs/biome": "1.9.4",

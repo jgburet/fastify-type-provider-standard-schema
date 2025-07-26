@@ -30,5 +30,3 @@ server.get(
 const x = await server.listen({ port: 3000 });
 console.log(`${x}/hello`);
 console.log(`${x}/hello?name=foo&extra=nope&extraextra=nopenope`);
-
-server.listen({ port: 3000 });

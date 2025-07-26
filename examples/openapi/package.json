@@ -18,7 +18,7 @@
         "@scalar/fastify-api-reference": "^1.32.7",
         "arktype": "^2.1.20",
         "fastify": "^5.3.2",
-        "fastify-swagger-transform-validation-schema": "file:../../../fastify-swagger-transform-validation-schema/fastify-swagger-transform-validation-schema-0.1.0.tgz",
+        "fastify-swagger-transform-validation-schema": "^0.1.0",
         "fastify-type-provider-standard-schema": "^0.1.0",
         "zod": "^4.0.5"
     },

@@ -10,7 +10,7 @@ import {
 } from "fastify-type-provider-standard-schema";
 
 import { routesWithArktype, routesWithZod } from "./routes.js";
-import { customMapper } from "./swagger-mapper.js";
+import { mapperForBothZodAndArk } from "./swagger-mapper.js";
 
 import type { StandardSchemaTypeProvider } from "fastify-type-provider-standard-schema";
 
@@ -25,7 +25,7 @@ export type FastifyInstance = typeof server;
 
 /* Registering plugins... */
 server
-    .register(fastifySwagger, { transform: fastifySwaggerTransform(customMapper) })
+    .register(fastifySwagger, { transform: fastifySwaggerTransform(mapperForBothZodAndArk) })
     .register(fastifySwaggerUi, { routePrefix: "/swagger-ui" })
     .register(fastifyScalarUi, { routePrefix: "/scalar-ui" });
 
